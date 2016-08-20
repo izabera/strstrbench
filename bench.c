@@ -13,10 +13,16 @@ char *uclibc_strstr(const char *, const char *);
 char *diet_strstr(const char *, const char *);
 char *musl_strstr(const char *, const char *);
 char *my_strstr(const char *, const char *);
+char *my2_strstr(const char *, const char *);
 char *fast_strstr(const char *, const char *);
 char *plan9_strstr(const char *, const char *);
 
 void stupid_gcc_stop_optimizing_this_away_for_fucks_sake(const char *);
+
+char *noop(const char *a, const char *b) {
+  // just to get the file in cache before the actual tests
+  return (char *)a + strlen(a) + strlen(b);
+}
 
 int main() {
   struct { char *word, *filename; } tests[] = {
@@ -35,6 +41,7 @@ int main() {
   };
 
   struct { char *name; char *(*func)(const char *, const char *); } strstrs[] = {
+    { "noop"   ,           noop },
     { "glibc"  ,         strstr },
     { "plan9"  ,   plan9_strstr },
     { "musl"   ,    musl_strstr },
@@ -42,6 +49,7 @@ int main() {
     { "bsd"    ,     bsd_strstr },
     { "diet"   ,    diet_strstr },
     { "mine"   ,      my_strstr },
+    { "mine2"  ,     my2_strstr },
     { "fast"   ,    fast_strstr },
   };
 
