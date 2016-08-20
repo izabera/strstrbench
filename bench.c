@@ -38,6 +38,25 @@ int main() {
     { "GCGTCCTGCTGGGTCAAACG" , "tests/dna/1M"                        },
     { "GCAACGAACCCCAGGAGCTC" , "tests/dna/10M"                       },
     { "aaaaaaaaaaaaaaaaaaaa" , "tests/repetitions/20-1"              },
+    { "C8/3WicGNjR1SUHnnXVC$" , "tests/random"                       },
+    { "8joikC8/3WicGNjR1SUHnnXVC$" , "tests/random"                  },
+    { "jOojH8joikC8/3WicGNjR1SUHnnXVC$" , "tests/random"             },
+
+    { "ABCDEFGHIJ"           , "tests/texts/anna-karenina.txt"       }, // line 10003
+    { "ABCDEF"               , "tests/texts/artamene.txt"            }, // line 10010
+    { "ABCDE"                , "tests/texts/brothers-karamazov.txt"  }, // line 10001
+    { "ABCD"                 , "tests/texts/complete-shakespear.txt" }, // line 10006
+    { "ABCDE"                , "tests/texts/iliad.txt"               }, // line 10002
+    { "ABCDEFGHIJ"           , "tests/texts/pride-and-prejudice.txt" }, // line 10006
+    { "ABCDEFG"              , "tests/texts/republic.txt"            }, // line 10016
+    { "ABCDEFGH"             , "tests/texts/war-and-peace.txt"       }, // line 10012
+    { "GAGAGAGAGAGAGAGGAGAG" , "tests/dna/100k"                      },
+    { "GAGAGAGAGAGAGGAGAGAG" , "tests/dna/1M"                        },
+    { "GAGAGAGAGAGAGGAGAGAG" , "tests/dna/10M"                       },
+    { "aaaaaaaaaaaaaaaaabba" , "tests/repetitions/20-1"              },
+    { "ABCDEFGHIJKLMNOPQRSTU" , "tests/random"                       },
+    { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" , "tests/random"                  },
+    { "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234" , "tests/random"             },
   };
 
   struct { char *name; char *(*func)(const char *, const char *); } strstrs[] = {
