@@ -76,7 +76,8 @@ int main() {
     int fd = open(tests[i].filename, O_RDONLY);
     struct stat st;
     fstat(fd, &st);
-    char *map = mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    char *buf = malloc(st.st_size);
+    read(fd, buf, st.st_size);
     close(fd);
 
     struct timeval t1, t2;
@@ -86,14 +87,13 @@ int main() {
     for (size_t j = 0; j < sizeof(strstrs)/sizeof(strstrs[0]); j++) {
       gettimeofday(&t1, NULL);
       for (int q = 0; q < 100; q++) 
-        stupid_gcc_stop_optimizing_this_away_for_fucks_sake(strstrs[j].func(map, tests[i].word));
+        stupid_gcc_stop_optimizing_this_away_for_fucks_sake(strstrs[j].func(buf, tests[i].word));
       gettimeofday(&t2, NULL);
       printf("%-10s %11.6f\n", strstrs[j].name,
           (double) (t2.tv_sec  - t1.tv_sec) +
           (double) (t2.tv_usec - t1.tv_usec) / 1000000);
     }
 
-    munmap(map, st.st_size);
   }
 
   return 0;
