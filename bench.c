@@ -7,6 +7,7 @@
 #include <inttypes.h>
 #include <string.h>
 #include <sys/time.h>
+#include <stdlib.h>
 
 char *bsd_strstr(const char *, const char *);
 char *uclibc_strstr(const char *, const char *);
@@ -94,6 +95,7 @@ int main() {
           (double) (t2.tv_usec - t1.tv_usec) / 1000000);
     }
 
+    free(buf);
   }
 
   return 0;
